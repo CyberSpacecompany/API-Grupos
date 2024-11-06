@@ -1,0 +1,53 @@
+﻿@model IEnumerable<API_Grupo.Models.Grupo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_grupo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion_grupo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fotoDeGrupo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creador)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_grupo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion_grupo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fotoDeGrupo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creador)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IDgrupo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IDgrupo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IDgrupo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
