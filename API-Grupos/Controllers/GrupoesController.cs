@@ -20,9 +20,9 @@ namespace API_Grupos.Controllers
         }
 
         // GET: Grupoes
-        public async Task<IActionResult> Index()
+        public Task<List<Grupo>> Index()
         {
-            return View(await _context.Grupo.ToListAsync());
+            return _context.Grupo.ToListAsync();
         }
 
         // GET: Grupoes/Details/5
@@ -54,15 +54,15 @@ namespace API_Grupos.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDgrupo,nombre_grupo,descripcion_grupo,fotoDeGrupo,creador")] Grupo grupo)
+        public async Task<IActionResult> Create([Bind("nombre_grupo,descripcion_grupo,fotoDeGrupo,creador")] Grupo grupo)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(grupo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Ok("El grupo se creó de forma correcta");
             }
-            return View(grupo);
+            return BadRequest("No se pudo crear el grupo de forma correcta");
         }
 
         // GET: Grupoes/Edit/5
